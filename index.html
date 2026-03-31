@@ -43,14 +43,14 @@
         <section id="the-three-pillars">
             <div class="container">
                 <h2 class="section-title">The Foundation of Stability</h2>
-                <p id="interaction-hint" style="text-align: center; color: #7f8c8d; margin-bottom: 40px;">Select a pillar to focus on its role in the foundation of goodness.</p>
+                <p id="interaction-hint">Select a pillar to focus on its role in the foundation of goodness.</p>
                 
                 <div id="interaction-wrapper">
                     <!-- Sidebar: The 3 Cards -->
-                    <div class="pillars-sidebar">
+                    <div class="pillars-sidebar" role="tablist" aria-label="Philosophical Pillars">
                         <!-- Mental Stability -->
-                        <div class="pillar-card" onclick="focusPillar(this, 'mental')">
-                            <div class="pillar-icon">🧠</div>
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="mental">
+                            <span class="pillar-icon" aria-hidden="true">🧠</span>
                             <h3>Mental Stability</h3>
                             <p class="card-summary">Self-actualization as the baseline for mental health.</p>
                             <!-- Hidden Data for Injection -->
@@ -60,11 +60,11 @@
                                 <p>This need for self-actualization creates the baseline for mental health. A person cannot offer genuine, effective mental support or guidance to others if their own psychological needs, happiness, and sense of purpose are not met. The energy required for this self-care - meditation, therapy, career pursuit - is a necessary, rational self-interest that is not a moral failure, but a step needed to ensure that one’s own unresolved issues are not projected onto others. It is the mental foundation upon which sustainable altruism is built.</p>
                                 <p>By prioritizing your own mental clarity, you ensure that your altruism is a <strong>choice made from strength</strong>, not a desperate search for meaning through the validation of others.</p>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Physical Stability -->
-                        <div class="pillar-card" onclick="focusPillar(this, 'physical')">
-                            <div class="pillar-icon">🍎</div>
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="physical">
+                            <span class="pillar-icon" aria-hidden="true">🍎</span>
                             <h3>Physical Stability</h3>
                             <p class="card-summary">Meeting foundational needs to free up resources.</p>
                             <div class="pillar-data" style="display:none;">
@@ -76,11 +76,11 @@
                                 <p>Prioritizing physical health through proper nutrition, sleep, and medical care is a form of "selfishness" that reduces the need for others and frees up societal resources. The decision to invest time and energy into one’s own physical well-being is, therefore, a moral act of rational self-interest. It ensures you are a contributor to the collective strength rather than a drain on it.</p>
                                 <p>When you are physically sound, you move from a person of need to a person of capacity, able to withstand the physical demands of helping a community.</p>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Fiscal Stability -->
-                        <div class="pillar-card" onclick="focusPillar(this, 'fiscal')">
-                            <div class="pillar-icon">💰</div>
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="fiscal">
+                            <span class="pillar-icon" aria-hidden="true">💰</span>
                             <h3>Fiscal Stability</h3>
                             <p class="card-summary">Financial independence as a prerequisite for charity.</p>
                             <div class="pillar-data" style="display:none;">
@@ -89,15 +89,15 @@
                                 <p>Fiscal instability is not merely an inconvenience; it actively stresses both the mental and physical foundations of an individual. The anxiety caused by financial situations like a constant state of worrying about rent, bills or medical expenses is a direct stress on the mental self-actualization. This financial insecurity forces a utilitarian view onto daily life, where every spare dollar must be spent on the "basics," eliminating the possibility of surplus wealth needed for charitable acts.</p>
                                 <p><strong>Furthermore, the pursuit of fiscal stability is an act of responsible citizenship.</strong> By ensuring their own self-sufficiency, individuals reduce their burden on society and free up resources for those who are genuinely incapable of achieving stability. It provides a reliable, self-sustaining member within society, which is the only true sustainable form of selfishness.</p>
                             </div>
-                        </div>
+                        </button>
                     </div>
 
                     <!-- Detail View (The Right Panel) -->
-                    <div id="pillar-detail-view">
+                    <div id="pillar-detail-view" role="tabpanel">
                         <div class="view-placeholder">
                             <p>Select a pillar to the left to dive deep into its philosophical impact.</p>
                         </div>
-                        <div id="detail-content">
+                        <div id="detail-content" aria-live="polite">
                             <!-- Dynamic Content Injected Here -->
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                     <div class="analogy-visual">
                         <div class="tutor-box">
                             <p>PhD in Math</p>
-                            <span>↑</span>
+                            <span aria-hidden="true">↑</span>
                             <p>Calculus II Student</p>
                             <small>Capacity to help is defined by the depth of your own foundation.</small>
                         </div>
@@ -203,35 +203,52 @@
     </footer>
 
     <script>
-        function focusPillar(card, type) {
+        document.addEventListener('DOMContentLoaded', () => {
             const wrapper = document.getElementById('interaction-wrapper');
             const detailView = document.getElementById('pillar-detail-view');
             const detailContent = document.getElementById('detail-content');
             const placeholder = document.querySelector('.view-placeholder');
             const hint = document.getElementById('interaction-hint');
-            
-            // Toggle active layout
-            wrapper.classList.add('is-active');
-            hint.style.opacity = '0';
-            
-            // Remove active class from all cards
-            document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-            
-            // Get data from the clicked card
-            const data = card.querySelector('.pillar-data').innerHTML;
-            
-            // Hide placeholder and update content
-            placeholder.style.display = 'none';
-            detailContent.innerHTML = data;
-            
-            // Smooth fade-in of content
-            detailContent.style.opacity = '0';
-            setTimeout(() => {
-                detailContent.style.opacity = '1';
-                detailView.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 50);
-        }
+            const pillarCards = document.querySelectorAll('.pillar-card');
+
+            function focusPillar(card) {
+                // Toggle active layout
+                wrapper.classList.add('is-active');
+                if (hint) hint.style.opacity = '0';
+                
+                // Reset all cards
+                pillarCards.forEach(c => {
+                    c.classList.remove('active');
+                    c.setAttribute('aria-selected', 'false');
+                });
+
+                // Set active card
+                card.classList.add('active');
+                card.setAttribute('aria-selected', 'true');
+                
+                // Get data from the clicked card
+                const data = card.querySelector('.pillar-data').innerHTML;
+                
+                // Hide placeholder and update content
+                if (placeholder) placeholder.style.display = 'none';
+                detailContent.innerHTML = data;
+                
+                // Smooth fade-in of content
+                detailContent.style.opacity = '0';
+                setTimeout(() => {
+                    detailContent.style.opacity = '1';
+                    detailView.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 50);
+            }
+
+            // Centralized Event Listener
+            pillarCards.forEach(card => {
+                card.addEventListener('click', () => focusPillar(card));
+                
+                // Keyboard support is handled automatically by using <button> 
+                // but we can add explicit handlers if needed for complex behavior.
+            });
+        });
     </script>
 </body>
 </html>

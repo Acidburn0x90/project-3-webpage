@@ -8,13 +8,21 @@
 :root {
     --bg-base: #f1f5f9; 
     --text-main: #0f172a; 
+    --text-muted: #475569;
+    --text-inv: #f8fafc;
     --accent-orange: #f97316; 
     --accent-blue: #2563eb;
     --card-bg: #ffffff;
+    --card-shadow: rgba(0,0,0,0.05);
+    --card-shadow-active: rgba(37, 99, 235, 0.1);
     --serif-font: 'Lora', serif;
     --sans-font: 'Inter', sans-serif;
     --dark-bg: #0f172a;
+    --dark-accent-bg: #020617;
     --cool-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    
+    /* Fluid Typography: min 2.5rem, max 4.5rem */
+    --h1-fluid: clamp(2.5rem, 8vw + 1rem, 4.5rem);
 }
 
 body {
@@ -42,7 +50,7 @@ header {
 
 header h1 {
     font-family: var(--serif-font);
-    font-size: 4.5rem;
+    font-size: var(--h1-fluid);
     font-style: italic;
     margin-bottom: 20px;
     letter-spacing: -1px;
@@ -51,7 +59,7 @@ header h1 {
 .subtitle {
     font-size: 1.4rem;
     font-weight: 300;
-    color: #475569;
+    color: var(--text-muted);
     max-width: 700px;
     margin: 0 auto;
 }
@@ -69,7 +77,7 @@ h2 {
 
 .dark {
     background-color: var(--dark-bg);
-    color: #f8fafc;
+    color: var(--text-inv);
 }
 
 .dark h2 {
@@ -100,6 +108,12 @@ h2 {
     align-items: flex-start;
 }
 
+#interaction-hint {
+    text-align: center; 
+    color: var(--text-muted); 
+    margin-bottom: 40px;
+}
+
 /* Sidebar Mode (Inactive) */
 .pillars-sidebar {
     display: grid;
@@ -121,22 +135,24 @@ h2 {
     background: var(--card-bg);
     padding: 40px 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px var(--card-shadow);
     text-align: center;
     border: 2px solid transparent;
     transition: all 0.4s ease;
     cursor: pointer;
+    width: 100%;
 }
 
-.pillar-card:hover {
+.pillar-card:hover, .pillar-card:focus {
     transform: translateY(-8px);
     border-color: var(--accent-blue);
+    outline: none;
 }
 
 .pillar-card.active {
     background: #fff;
     border-color: var(--accent-blue);
-    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 20px 50px var(--card-shadow-active);
 }
 
 .pillar-icon {
@@ -190,7 +206,7 @@ h2 {
 }
 
 .sidebar-quote {
-    background: #f8fafc;
+    background: var(--text-inv);
     padding: 30px;
     border-left: 5px solid var(--accent-orange);
     margin: 30px 0;
@@ -222,7 +238,7 @@ h2 {
     padding: 40px;
     border-radius: 30px;
     text-align: center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+    box-shadow: 0 30px 60px var(--card-shadow);
 }
 
 .tutor-box span { font-size: 2rem; color: var(--accent-orange); display: block; }
@@ -231,7 +247,7 @@ h2 {
 .comp-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
 .comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-orange); }
 
-.dark-accent { background-color: #020617; color: #fff; text-align: center; }
+.dark-accent { background-color: var(--dark-accent-bg); color: #fff; text-align: center; }
 .final-statement { font-size: 1.8rem; font-family: var(--serif-font); margin-top: 60px; }
 
 /* Works Cited */
