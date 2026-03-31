@@ -6,21 +6,22 @@
 }
 
 :root {
-    --bg-warm: #faf9f6; 
-    --text-main: #2d3436; 
-    --accent: #d35400; 
-    --accent-muted: #e67e22;
+    --bg-base: #f1f5f9; 
+    --text-main: #0f172a; 
+    --accent-orange: #f97316; 
+    --accent-blue: #2563eb;
     --card-bg: #ffffff;
     --serif-font: 'Playfair Display', serif;
     --sans-font: 'Inter', sans-serif;
-    --dark-bg: #2c3e50;
+    --dark-bg: #0f172a;
+    --cool-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 }
 
 body {
     font-family: var(--sans-font);
     line-height: 1.8;
     color: var(--text-main);
-    background-color: var(--bg-warm);
+    background-color: var(--bg-base);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -32,7 +33,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    background: var(--cool-gradient);
     color: var(--text-main);
     padding: 140px 0 100px;
     text-align: center;
@@ -50,7 +51,7 @@ header h1 {
 .subtitle {
     font-size: 1.4rem;
     font-weight: 300;
-    color: #7f8c8d;
+    color: #475569;
     max-width: 700px;
     margin: 0 auto;
 }
@@ -68,7 +69,7 @@ h2 {
 
 .dark {
     background-color: var(--dark-bg);
-    color: #ecf0f1;
+    color: #f8fafc;
 }
 
 .dark h2 {
@@ -84,12 +85,13 @@ h2 {
     display: block;
     font-size: 4.5rem;
     font-weight: 900;
-    color: var(--accent);
+    color: var(--accent-orange);
     text-transform: uppercase;
     letter-spacing: -2px;
     margin-top: 10px;
     font-style: italic;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    text-shadow: 3px 3px 0px var(--accent-blue);
+    -webkit-text-stroke: 1px var(--accent-blue);
 }
 
 /* Dashbaord Interaction Wrapper */
@@ -130,13 +132,13 @@ h2 {
 
 .pillar-card:hover {
     transform: translateY(-8px);
-    border-color: var(--accent-muted);
+    border-color: var(--accent-blue);
 }
 
 .pillar-card.active {
     background: #fff;
-    border-color: var(--accent);
-    box-shadow: 0 20px 50px rgba(211, 84, 0, 0.1);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
 }
 
 .pillar-icon {
@@ -152,7 +154,7 @@ h2 {
 
 .card-summary {
     font-size: 0.95rem;
-    color: #7f8c8d;
+    color: #64748b;
 }
 
 /* Detail View Panel */
@@ -179,19 +181,19 @@ h2 {
     font-family: var(--serif-font);
     font-size: 2.2rem;
     margin-bottom: 30px;
-    color: var(--accent);
+    color: var(--accent-blue);
 }
 
 #detail-content p {
     font-size: 1.15rem;
     margin-bottom: 25px;
-    color: #444;
+    color: #334155;
 }
 
 .sidebar-quote {
-    background: #fff8f0;
+    background: #f8fafc;
     padding: 30px;
-    border-left: 5px solid var(--accent);
+    border-left: 5px solid var(--accent-orange);
     margin: 30px 0;
     font-style: italic;
     font-size: 1.2rem;
@@ -201,11 +203,11 @@ h2 {
 .view-placeholder {
     text-align: center;
     padding: 100px 0;
-    color: #bdc3c7;
+    color: #94a3b8;
 }
 
 /* Analogy & Other Sections */
-.cozy-beige { background-color: #f4ece4; }
+.cool-accent-bg { background-color: #e2e8f0; }
 .essay-block { max-width: 800px; }
 .essay-block-centered { max-width: 800px; margin: 0 auto; text-align: center; }
 
@@ -224,13 +226,13 @@ h2 {
     box-shadow: 0 30px 60px rgba(0,0,0,0.05);
 }
 
-.tutor-box span { font-size: 2rem; color: var(--accent); display: block; }
+.tutor-box span { font-size: 2rem; color: var(--accent-orange); display: block; }
 
 .comparison-long { display: grid; gap: 60px; margin-top: 60px; }
 .comp-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
-.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-muted); }
+.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-blue); }
 
-.dark-accent { background-color: #1a1a1a; color: #fff; text-align: center; }
+.dark-accent { background-color: #020617; color: #fff; text-align: center; }
 .final-statement { font-size: 1.8rem; font-family: var(--serif-font); margin-top: 60px; }
 
 /* Works Cited */
