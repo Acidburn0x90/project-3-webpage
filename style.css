@@ -148,6 +148,7 @@ h2 {
 .pillar-card h3 {
     font-family: var(--serif-font);
     margin-bottom: 15px;
+    color: var(--accent-orange);
 }
 
 .card-summary {
@@ -179,7 +180,7 @@ h2 {
     font-family: var(--serif-font);
     font-size: 2.2rem;
     margin-bottom: 30px;
-    color: var(--accent-blue);
+    color: var(--accent-orange);
 }
 
 #detail-content p {
