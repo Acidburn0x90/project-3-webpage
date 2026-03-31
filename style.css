@@ -45,7 +45,7 @@ header h1 {
     font-size: 4.5rem;
     font-style: italic;
     margin-bottom: 20px;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
 .subtitle {
@@ -90,8 +90,6 @@ h2 {
     letter-spacing: -2px;
     margin-top: 10px;
     font-style: italic;
-    text-shadow: 3px 3px 0px var(--accent-blue);
-    -webkit-text-stroke: 1px var(--accent-blue);
 }
 
 /* Dashbaord Interaction Wrapper */
@@ -230,7 +228,7 @@ h2 {
 
 .comparison-long { display: grid; gap: 60px; margin-top: 60px; }
 .comp-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
-.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-blue); }
+.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-orange); }
 
 .dark-accent { background-color: #020617; color: #fff; text-align: center; }
 .final-statement { font-size: 1.8rem; font-family: var(--serif-font); margin-top: 60px; }
