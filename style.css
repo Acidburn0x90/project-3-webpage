@@ -21,7 +21,7 @@
     --dark-accent-bg: #020617;
     --cool-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
     
-    /* Fluid Typography: min 2.5rem, max 4.5rem */
+    /* Fluid Typography: scales smoothly between 2.5rem and 4.5rem depending on viewport width */
     --h1-fluid: clamp(2.5rem, 8vw + 1rem, 4.5rem);
 }
 
@@ -31,6 +31,21 @@ body {
     color: var(--text-main);
     background-color: var(--bg-base);
     -webkit-font-smoothing: antialiased;
+}
+
+/* FEATURE ADDITION: Reading Progress Bar
+  Fixed at the very top of the viewport with a high z-index to stay above content.
+  The width is controlled by JavaScript. 
+*/
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--accent-orange);
+    width: 0%; /* Initial state */
+    z-index: 9999;
+    transition: width 0.1s ease-out; /* Smooths out rapid scroll events */
 }
 
 .container {
@@ -46,6 +61,14 @@ header {
     padding: 140px 0 100px;
     text-align: center;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* TYPOGRAPHY FIX: 
+  Applying line-height: 1.1 strictly to headers prevents 
+  massive gaps when these large fonts wrap to a new line on mobile.
+*/
+h1, h2, h3 {
+    line-height: 1.1; 
 }
 
 header h1 {
@@ -85,7 +108,6 @@ h2 {
 }
 
 .stamping-title {
-    line-height: 1.2;
     margin-bottom: 40px;
 }
 
@@ -100,7 +122,7 @@ h2 {
     font-style: italic;
 }
 
-/* Dashbaord Interaction Wrapper */
+/* Dashboard Interaction Wrapper */
 #interaction-wrapper {
     display: flex;
     gap: 40px;
@@ -112,6 +134,7 @@ h2 {
     text-align: center; 
     color: var(--text-muted); 
     margin-bottom: 40px;
+    transition: opacity 0.3s ease; /* Ensure the hint fades out cleanly */
 }
 
 /* Sidebar Mode (Inactive) */
@@ -146,7 +169,7 @@ h2 {
 .pillar-card:hover, .pillar-card:focus {
     transform: translateY(-8px);
     border-color: var(--accent-blue);
-    outline: none;
+    outline: none; /* Consider adding a custom focus ring for keyboard users here */
 }
 
 .pillar-card.active {
@@ -172,7 +195,7 @@ h2 {
     color: #64748b;
 }
 
-/* Detail View Panel */
+/* Detail View Panel Container */
 #pillar-detail-view {
     flex: 1;
     background: #fff;
@@ -180,10 +203,15 @@ h2 {
     border-radius: 30px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.06);
     border: 1px solid rgba(0,0,0,0.02);
-    display: none; /* Hidden by default */
+    display: none; 
     opacity: 0;
     max-height: 800px;
     overflow-y: auto;
+}
+
+/* ACCESSIBILITY: Remove the default blue glow when JS focuses this container */
+#pillar-detail-view:focus {
+    outline: none;
 }
 
 #interaction-wrapper.is-active #pillar-detail-view {
@@ -191,15 +219,23 @@ h2 {
     opacity: 1;
 }
 
-/* Detail View Typography */
-#detail-content h2 {
+/* ARCHITECTURAL UPDATE: Individual Panel Styling
+  These panels live in the DOM persistently now. We manage their visibility
+  by adding/removing the 'hidden' attribute via JS, and animating the opacity here.
+*/
+.pillar-panel {
+    transition: opacity 0.4s ease-in;
+    opacity: 0; 
+}
+
+.pillar-panel h2 {
     font-family: var(--serif-font);
     font-size: 2.2rem;
     margin-bottom: 30px;
     color: var(--accent-orange);
 }
 
-#detail-content p {
+.pillar-panel p {
     font-size: 1.15rem;
     margin-bottom: 25px;
     color: #334155;
@@ -245,7 +281,7 @@ h2 {
 
 .comparison-long { display: grid; gap: 60px; margin-top: 60px; }
 .comp-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
-.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-orange); }
+.comp-header h3 { font-family: var(--serif-font); font-size: 2rem; color: var(--accent-orange); margin-bottom: 10px; }
 
 .dark-accent { background-color: var(--dark-accent-bg); color: #fff; text-align: center; }
 .final-statement { font-size: 1.8rem; font-family: var(--serif-font); margin-top: 60px; }

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="reading-progress" aria-hidden="true"></div>
+
     <header>
         <div class="container">
             <h1>Morality of Selfishness</h1>
@@ -18,7 +20,6 @@
     </header>
 
     <main>
-        <!-- Section 1: Introduction -->
         <section id="introduction">
             <div class="container">
                 <div class="essay-block">
@@ -28,7 +29,6 @@
             </div>
         </section>
 
-        <!-- Section 2: Stamping Insecurities -->
         <section id="stamping-insecurities" class="dark">
             <div class="container">
                 <div class="essay-block-centered">
@@ -39,73 +39,66 @@
             </div>
         </section>
 
-        <!-- Section 3: The Three Pillars (DASHBOARD INTERACTION) -->
         <section id="the-three-pillars">
             <div class="container">
                 <h2 class="section-title">The Foundation of Stability</h2>
                 <p id="interaction-hint">Select a pillar to focus on its role in the foundation of goodness.</p>
                 
                 <div id="interaction-wrapper">
-                    <!-- Sidebar: The 3 Cards -->
                     <div class="pillars-sidebar" role="tablist" aria-label="Philosophical Pillars">
-                        <!-- Mental Stability -->
-                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="mental">
+                        
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="panel-mental" id="tab-mental" data-target="panel-mental">
                             <span class="pillar-icon" aria-hidden="true">🧠</span>
                             <h3>Mental Stability</h3>
                             <p class="card-summary">Self-actualization as the baseline for mental health.</p>
-                            <!-- Hidden Data for Injection -->
-                            <div class="pillar-data" style="display:none;">
-                                <h2>Mental Stability: The Psychological Baseline</h2>
-                                <p>True internal stability is achieved through mental self-fulfillment. As the psychologist Abraham Maslow noted, <strong>"A musician must make music, an artist must paint, a poet must write, if he is to be ultimately happy. What a man can be, he must be"</strong> (Maslow 382).</p>
-                                <p>This need for self-actualization creates the baseline for mental health. A person cannot offer genuine, effective mental support or guidance to others if their own psychological needs, happiness, and sense of purpose are not met. The energy required for this self-care - meditation, therapy, career pursuit - is a necessary, rational self-interest that is not a moral failure, but a step needed to ensure that one’s own unresolved issues are not projected onto others. It is the mental foundation upon which sustainable altruism is built.</p>
-                                <p>By prioritizing your own mental clarity, you ensure that your altruism is a <strong>choice made from strength</strong>, not a desperate search for meaning through the validation of others.</p>
-                            </div>
                         </button>
 
-                        <!-- Physical Stability -->
-                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="physical">
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="panel-physical" id="tab-physical" data-target="panel-physical">
                             <span class="pillar-icon" aria-hidden="true">🍎</span>
                             <h3>Physical Stability</h3>
                             <p class="card-summary">Meeting foundational needs to free up resources.</p>
-                            <div class="pillar-data" style="display:none;">
-                                <h2>Physical Stability: The Foundation of Action</h2>
-                                <p>Mental security starts with a physical foundation. Physical stability includes safety, health, and meeting one’s immediate biological requirements. This is the foundational level of Maslow’s hierarchy, described as the state where a person does not have to "live by bread alone" (Maslow 375).</p>
-                                <div class="sidebar-quote">
-                                    "As Maslow noted, 'man lives by bread alone, when there is no bread,' but higher desires only emerge when the 'belly is chronically filled' (Maslow 373)."
-                                </div>
-                                <p>Prioritizing physical health through proper nutrition, sleep, and medical care is a form of "selfishness" that reduces the need for others and frees up societal resources. The decision to invest time and energy into one’s own physical well-being is, therefore, a moral act of rational self-interest. It ensures you are a contributor to the collective strength rather than a drain on it.</p>
-                                <p>When you are physically sound, you move from a person of need to a person of capacity, able to withstand the physical demands of helping a community.</p>
-                            </div>
                         </button>
 
-                        <!-- Fiscal Stability -->
-                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="pillar-detail-view" data-pillar="fiscal">
+                        <button class="pillar-card" role="tab" aria-selected="false" aria-controls="panel-fiscal" id="tab-fiscal" data-target="panel-fiscal">
                             <span class="pillar-icon" aria-hidden="true">💰</span>
                             <h3>Fiscal Stability</h3>
                             <p class="card-summary">Financial independence as a prerequisite for charity.</p>
-                            <div class="pillar-data" style="display:none;">
-                                <h2>Fiscal Stability: Responsibility & Freedom</h2>
-                                <p>Beyond the physical is the reality of fiscal stability, which provides the necessary freedom from material stresses. Ayn Rand defines rational self-interest as that which seeks to maintain one’s own life (Rand 25), and the pursuit of financial health - being debt-free or having reserves - is simply fiscal stability manifest.</p>
-                                <p>Fiscal instability is not merely an inconvenience; it actively stresses both the mental and physical foundations of an individual. The anxiety caused by financial situations like a constant state of worrying about rent, bills or medical expenses is a direct stress on the mental self-actualization. This financial insecurity forces a utilitarian view onto daily life, where every spare dollar must be spent on the "basics," eliminating the possibility of surplus wealth needed for charitable acts.</p>
-                                <p><strong>Furthermore, the pursuit of fiscal stability is an act of responsible citizenship.</strong> By ensuring their own self-sufficiency, individuals reduce their burden on society and free up resources for those who are genuinely incapable of achieving stability. It provides a reliable, self-sustaining member within society, which is the only true sustainable form of selfishness.</p>
-                            </div>
                         </button>
                     </div>
 
-                    <!-- Detail View (The Right Panel) -->
-                    <div id="pillar-detail-view" role="tabpanel">
-                        <div class="view-placeholder">
+                    <div id="pillar-detail-view" tabindex="-1">
+                        <div class="view-placeholder" id="default-placeholder">
                             <p>Select a pillar to the left to dive deep into its philosophical impact.</p>
                         </div>
-                        <div id="detail-content" aria-live="polite">
-                            <!-- Dynamic Content Injected Here -->
+                        
+                        <div id="panel-mental" class="pillar-panel" role="tabpanel" aria-labelledby="tab-mental" hidden>
+                            <h2>Mental Stability: The Psychological Baseline</h2>
+                            <p>True internal stability is achieved through mental self-fulfillment. As the psychologist Abraham Maslow noted, <strong>"A musician must make music, an artist must paint, a poet must write, if he is to be ultimately happy. What a man can be, he must be"</strong> (Maslow 382).</p>
+                            <p>This need for self-actualization creates the baseline for mental health. A person cannot offer genuine, effective mental support or guidance to others if their own psychological needs, happiness, and sense of purpose are not met. The energy required for this self-care - meditation, therapy, career pursuit - is a necessary, rational self-interest that is not a moral failure, but a step needed to ensure that one’s own unresolved issues are not projected onto others. It is the mental foundation upon which sustainable altruism is built.</p>
+                            <p>By prioritizing your own mental clarity, you ensure that your altruism is a <strong>choice made from strength</strong>, not a desperate search for meaning through the validation of others.</p>
+                        </div>
+
+                        <div id="panel-physical" class="pillar-panel" role="tabpanel" aria-labelledby="tab-physical" hidden>
+                            <h2>Physical Stability: The Foundation of Action</h2>
+                            <p>Mental security starts with a physical foundation. Physical stability includes safety, health, and meeting one’s immediate biological requirements. This is the foundational level of Maslow’s hierarchy, described as the state where a person does not have to "live by bread alone" (Maslow 375).</p>
+                            <div class="sidebar-quote">
+                                "As Maslow noted, 'man lives by bread alone, when there is no bread,' but higher desires only emerge when the 'belly is chronically filled' (Maslow 373)."
+                            </div>
+                            <p>Prioritizing physical health through proper nutrition, sleep, and medical care is a form of "selfishness" that reduces the need for others and frees up societal resources. The decision to invest time and energy into one’s own physical well-being is, therefore, a moral act of rational self-interest. It ensures you are a contributor to the collective strength rather than a drain on it.</p>
+                            <p>When you are physically sound, you move from a person of need to a person of capacity, able to withstand the physical demands of helping a community.</p>
+                        </div>
+
+                        <div id="panel-fiscal" class="pillar-panel" role="tabpanel" aria-labelledby="tab-fiscal" hidden>
+                            <h2>Fiscal Stability: Responsibility & Freedom</h2>
+                            <p>Beyond the physical is the reality of fiscal stability, which provides the necessary freedom from material stresses. Ayn Rand defines rational self-interest as that which seeks to maintain one’s own life (Rand 25), and the pursuit of financial health - being debt-free or having reserves - is simply fiscal stability manifest.</p>
+                            <p>Fiscal instability is not merely an inconvenience; it actively stresses both the mental and physical foundations of an individual. The anxiety caused by financial situations like a constant state of worrying about rent, bills or medical expenses is a direct stress on the mental self-actualization. This financial insecurity forces a utilitarian view onto daily life, where every spare dollar must be spent on the "basics," eliminating the possibility of surplus wealth needed for charitable acts.</p>
+                            <p><strong>Furthermore, the pursuit of fiscal stability is an act of responsible citizenship.</strong> By ensuring their own self-sufficiency, individuals reduce their burden on society and free up resources for those who are genuinely incapable of achieving stability. It provides a reliable, self-sustaining member within society, which is the only true sustainable form of selfishness.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: The Analogy Section -->
         <section id="the-analogy" class="cool-accent-bg">
             <div class="container">
                 <div class="analogy-split">
@@ -126,12 +119,10 @@
             </div>
         </section>
 
-        <!-- Section 5: Philosophical Perspectives -->
         <section id="philosophical-debate" class="dark">
             <div class="container">
                 <h2>Philosophical Perspectives</h2>
                 <div class="comparison-long">
-                    <!-- Rand -->
                     <div class="comp-item">
                         <div class="comp-header">
                             <h3>Ayn Rand: The Virtue of Selfishness</h3>
@@ -139,7 +130,6 @@
                         <p>Selfishness is frequently dismissed as a negative attribute, but a rational level of self-interest is a requirement for any genuine altruism. As Ayn Rand argues, "selfishness" is essentially a concern with one’s own interests and does not inherently carry a negative moral evaluation (Rand 5). In fact, Rand states that achieving one’s own happiness is a person’s highest moral purpose (Rand 23). This aligns with the practical reality that being "good" to oneself is an inherently selfish act, yet it is the only way to reach the stability required to be "good" for anyone else.</p>
                     </div>
 
-                    <!-- Vonnegut -->
                     <div class="comp-item">
                         <div class="comp-header">
                             <h3>Kurt Vonnegut: The Dystopia of Forced Equality</h3>
@@ -148,7 +138,6 @@
                         <p>This suppression is achieved through government mandated physical and mental handicaps, such as <strong>heavy sash weights and disruptive radio earpieces</strong>, designed to make sure that no citizen is stronger or smarter than another (Vonnegut 1). While the term "stability" is objective, the process of obtaining it will always require putting one’s own interests above all else. A society with forced equality handicaps, if not eliminates, the possibility of individuals who are able to do "good".</p>
                     </div>
 
-                    <!-- Singer -->
                     <div class="comp-item">
                         <div class="comp-header">
                             <h3>Peter Singer: The Utilitarian Critique</h3>
@@ -160,7 +149,6 @@
             </div>
         </section>
 
-        <!-- Section 6: More Leads to More -->
         <section id="more-leads-to-more">
             <div class="container">
                 <div class="essay-block">
@@ -170,7 +158,6 @@
             </div>
         </section>
 
-        <!-- Section 7: Conclusion -->
         <section id="conclusion" class="dark-accent">
             <div class="container">
                 <div class="essay-block-centered">
@@ -181,7 +168,6 @@
             </div>
         </section>
 
-        <!-- Works Cited -->
         <section id="works-cited">
             <div class="container">
                 <hr>
@@ -204,49 +190,83 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. DASHBOARD INTERACTION LOGIC ---
             const wrapper = document.getElementById('interaction-wrapper');
             const detailView = document.getElementById('pillar-detail-view');
-            const detailContent = document.getElementById('detail-content');
-            const placeholder = document.querySelector('.view-placeholder');
+            const placeholder = document.getElementById('default-placeholder');
             const hint = document.getElementById('interaction-hint');
             const pillarCards = document.querySelectorAll('.pillar-card');
+            const allPanels = document.querySelectorAll('.pillar-panel');
 
             function focusPillar(card) {
-                // Toggle active layout
+                // Determine which target panel corresponds to the clicked card
+                const targetId = card.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+
+                // Step 1: UI State Changes
                 wrapper.classList.add('is-active');
-                if (hint) hint.style.opacity = '0';
+                if (hint) hint.style.opacity = '0'; // Hide the helper text
+                if (placeholder) placeholder.style.display = 'none'; // Remove the empty state text
                 
-                // Reset all cards
+                // Step 2: Reset all cards and panels
                 pillarCards.forEach(c => {
                     c.classList.remove('active');
                     c.setAttribute('aria-selected', 'false');
                 });
+                allPanels.forEach(p => {
+                    p.hidden = true;         // Hide from DOM/Accessibility Tree
+                    p.style.opacity = '0';   // Reset visual opacity for fade effect
+                });
 
-                // Set active card
+                // Step 3: Activate the selected card and panel
                 card.classList.add('active');
                 card.setAttribute('aria-selected', 'true');
                 
-                // Get data from the clicked card
-                const data = card.querySelector('.pillar-data').innerHTML;
+                targetPanel.hidden = false;
                 
-                // Hide placeholder and update content
-                if (placeholder) placeholder.style.display = 'none';
-                detailContent.innerHTML = data;
-                
-                // Smooth fade-in of content
-                detailContent.style.opacity = '0';
+                // Allow the browser a tiny frame to un-hide the element before applying opacity.
+                // This triggers the CSS transition smoothly.
                 setTimeout(() => {
-                    detailContent.style.opacity = '1';
-                    detailView.scrollTo({ top: 0, behavior: 'smooth' });
+                    targetPanel.style.opacity = '1';
+                    
+                    // ACCESSIBILITY: Shift programatic focus to the newly populated wrapper.
+                    // Screen readers will now read the new content instead of staying stuck on the button.
+                    detailView.focus();
+
+                    // MOBILE UX: Check viewport width. If it's a mobile screen (< 1000px), 
+                    // scroll the entire window so the content is actually visible. 
+                    if (window.innerWidth <= 1000) {
+                        detailView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        // Desktop UX: Just reset the internal scroll of the box in case they scrolled down
+                        // on the previous tab's content.
+                        detailView.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
                 }, 50);
             }
 
-            // Centralized Event Listener
+            // Attach the event listener to all buttons
             pillarCards.forEach(card => {
                 card.addEventListener('click', () => focusPillar(card));
+            });
+
+            // --- 2. READING PROGRESS INDICATOR LOGIC ---
+            const progressBar = document.getElementById('reading-progress');
+            
+            // This event fires every time the user scrolls
+            window.addEventListener('scroll', () => {
+                // Calculate how far down the user has scrolled.
+                // documentElement.scrollTop is how many pixels are hidden above the top of the viewport.
+                // scrollHeight is the total height of the page.
+                // clientHeight is the height of the visible window.
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 
-                // Keyboard support is handled automatically by using <button> 
-                // but we can add explicit handlers if needed for complex behavior.
+                // Calculate percentage (0 to 100)
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                
+                // Map the percentage directly to the CSS width of our progress bar
+                progressBar.style.width = scrollPercent + '%';
             });
         });
     </script>
